@@ -1,0 +1,48 @@
+<?php
+
+$target_file="/tmp/updata.txt";
+
+echo "File information: <br> <br>";
+
+echo "Name: " . $_FILES["file"]["name"] . "<br />";
+echo "Type: " . $_FILES["file"]["type"] . "<br />";
+echo "Size: " . ($_FILES["file"]["size"] / 1024) . " Kb<br />";
+echo "Temp Name: " . $_FILES["file"]["tmp_name"];
+
+if($_FILES['file']['name']!="")
+
+{
+
+move_uploaded_file($_FILES['file']['tmp_name'], $target_file);
+
+}
+
+else
+
+{
+
+echo "No such file";
+
+}
+
+//echo "Folder=".$_FILES['file']['tmp_name'];
+
+//echo "Name =".$_FILES['file']['name'];
+
+echo "<br><br>File Content:<br><br>";
+
+$fil=fopen($target_file,"r");
+
+while(!feof($fil))
+
+{
+
+echo fgets($fil);
+
+}
+
+fclose($fil);
+
+
+
+?> 
